@@ -9,19 +9,11 @@ pygame.mixer.music.play(-1)
 
 # Hauptfenster erstellen
 root = Tk()
-root.title("Labyrinth-Spiel")
+root.title("Labyrinth")
 root.geometry("600x600")
 
 farbe = colorchooser.askcolor(title="Wähle eine Hintergrundfarbe")[1] 
 if farbe:  
     root.configure(bg=farbe)
 
-def farbe_aendern():
-    farbe = colorchooser.askcolor()[1]
-    if farbe:
-        root.configure(bg=farbe)
 
-button = Button(root, text="Hintergrundfarbe ändern", command=farbe_aendern)
-button.pack(pady=20)
-
-root.mainloop()
