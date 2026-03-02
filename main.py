@@ -16,3 +16,4 @@ canvas.create_image(0, 0, anchor=NW, image=lab_img)
 
 # Hauptloop starten
 root.mainloop()
+root.mainloop()
