@@ -1,27 +1,15 @@
-# Tkinter: Python-Bibliothek für grafische Oberflächen
 from tkinter import *
-from tkinter import colorchooser
-import pygame
 
-pygame.mixer.init()
-pygame.mixer.music.load("hintergrundmusik.mp3")
-pygame.mixer.music.play(-1)
+class UIManager:
 
-# Hauptfenster erstellen
-root = Tk()
-root.title("Labyrinth-Spiel")
-root.geometry("600x600")
+    def __init__(self, canvas):
+        self.canvas = canvas
 
-farbe = colorchooser.askcolor(title="Wähle eine Hintergrundfarbe")[1] 
-if farbe:  
-    root.configure(bg=farbe)
-
-def farbe_aendern():
-    farbe = colorchooser.askcolor()[1]
-    if farbe:
-        root.configure(bg=farbe)
-
-button = Button(root, text="Hintergrundfarbe ändern", command=farbe_aendern)
-button.pack(pady=20)
-
-root.mainloop()
+    def show_win_message(self):
+        self.canvas.create_text(
+            300,
+            300,
+            text="Du hast gewonnen!",
+            font=("Arial", 30),
+            fill="green"
+        )

@@ -1,19 +1,35 @@
 from tkinter import *
-from PIL import Image, ImageTk
+import pygame
+from labyrinth import Labyrinth
+from player import Player
 
-# Hauptfenster
+# Musik starten
+pygame.mixer.init()
+pygame.mixer.music.load("hintergrundmusik.mp3")
+pygame.mixer.music.play(-1)
+
+# Fenster
 root = Tk()
 root.title("Labyrinth-Spiel")
 root.geometry("600x600")
-
-# Canvas für das Spiel
 canvas = Canvas(root, width=600, height=600)
 canvas.pack()
 
-# Labyrinth-Bild laden
-lab_img = PhotoImage(file="labyrinth-photo.png")  # PNG im assets-Ordner
-canvas.create_image(0, 0, anchor=NW, image=lab_img)
+# Labyrinth und Spieler
+labyrinth = Labyrinth(canvas)
+labyrinth.draw()
+player = Player(canvas, labyrinth)
 
-# Hauptloop starten
-root.mainloop()
+# Bewegung
+def move_player(event):
+    if event.keysym == "Up":
+        player.move(0, -5)
+    elif event.keysym == "Down":
+        player.move(0, 5)
+    elif event.keysym == "Left":
+        player.move(-5, 0)
+    elif event.keysym == "Right":
+        player.move(5, 0)
+
+root.bind("<Key>", move_player)
 root.mainloop()
